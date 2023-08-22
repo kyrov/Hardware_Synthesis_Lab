@@ -30,6 +30,6 @@ module fullAdder(
     input cin;
     reg cout,s;
     always @(a,b,cin) begin
-        {cout,s} <= a + b + cin;
+        {cout,s} = a + b + cin;
     end
 endmodule
