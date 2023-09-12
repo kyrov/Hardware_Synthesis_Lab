@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/24/2023 05:11:36 PM
+// Create Date: 08/18/2023 11:26:46 PM
 // Design Name: 
-// Module Name: D_FlipFlop
+// Module Name: ClockDivider
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,12 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module D_FlipFlop(
-    input wire D,
+module ClockDivider
+#(
+    parameter N = 5,M = 2
+)
+(
     input wire clock,
-    output reg Q
+    output wire [M-1:0] D_clk
     );
+    reg [N-1:0] count;
+    assign D_clk = count[N-1:N-M];
     always @(posedge clock) begin
-        Q <= D;
-    end
+        count <= count + 1;
+    end 
 endmodule

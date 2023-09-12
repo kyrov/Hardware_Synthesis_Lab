@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 09/12/2023 12:38:45 PM
+// Create Date: 09/12/2023 12:41:58 PM
 // Design Name: 
-// Module Name: Single_Pulser
+// Module Name: InputBuffer
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,18 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Single_Pulser(
+module InputBuffer(
     input wire P,
     input wire clock,
-    output reg Z
+    output wire Z
     );
-    reg tmp;
-    always @(posedge clock) begin
-        tmp <= P;
-        if(tmp == 0 && P == 1) begin
-            Z <= 1;
-        end else begin
-            Z <= 0;
-        end
-    end
+    wire s0,s1,s2;
+    DFF u0(P,clock,s0);
+    DFF u1(s0,clock,s1);
+    Deboucer u2(s1,clock,s2);
+    Single_Pulser u3(s2,clock,Z);
 endmodule

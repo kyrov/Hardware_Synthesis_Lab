@@ -54,3 +54,6 @@ set_property PACKAGE_PIN W17 [get_ports {In[3]}]
 set_property PACKAGE_PIN W16 [get_ports {In[2]}]
 set_property PACKAGE_PIN V16 [get_ports {In[1]}]
 set_property PACKAGE_PIN V17 [get_ports {In[0]}]
+
+
+create_clock -period 10.000 -name clock -waveform {0.000 5.000} [get_ports clock]

@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/24/2023 05:14:22 PM
+// Create Date: 09/12/2023 12:43:10 PM
 // Design Name: 
 // Module Name: Deboucer
 // Project Name: 
@@ -25,7 +25,7 @@ module Deboucer(
     input wire clock,
     output reg Z
     );
-    reg [11:0] count;
+    reg [20:0] count;
     always @(posedge clock) begin
         count <= count + 1;
         if(count == 0) begin

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/23/2023 05:47:19 PM
+// Create Date: 09/12/2023 12:26:57 PM
 // Design Name: 
-// Module Name: BCD_Couter
+// Module Name: BCD
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,29 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module BCD_Couter(
-    input wire up,
-    input wire down,
-    input wire set9,
-    input wire set0,
+module BCD(
+    input wire up,down,set9,set0,
     input wire clock,
     output reg [3:0] A,
-    output wire cout,
-    output wire bout
+    output wire cout,bout
     );
-    assign cout = (A == 4'b1001) ? 1 : 0;
-    assign bout = (A == 4'b0000) ? 1 : 0;
+    assign cout = (A == 4'b1001 && up)? 1:0;
+    assign bout = (A == 4'b0000 && down)? 1:0;
     always @(posedge clock) begin
         if(up) begin
-            case (A)
-                4'b1001 : A <= 0;
-                default : A <= A+1;
-            endcase
+            if(A == 4'b1001) begin
+                A <= 0;
+            end else begin
+                A <= A + 1;
+            end
         end else if(down) begin
-            case (A)
-                4'b0000 : A <= 4'b1001;
-                default : A <= A-1;
-            endcase
+            if(A == 4'b0000) begin
+                A <= 4'b1001;
+            end else begin
+                A <= A - 1;
+            end
         end else if(set9) begin
             A <= 4'b1001;
         end else if(set0) begin

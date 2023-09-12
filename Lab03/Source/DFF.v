@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/24/2023 06:59:38 PM
+// Create Date: 09/12/2023 12:40:23 PM
 // Design Name: 
-// Module Name: DDFFS
+// Module Name: DFF
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,12 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module DDFFS(
-    input wire D,
+module DFF(
+    input wire P,
     input wire clock,
-    output wire Z
+    output reg Z
     );
-    wire t1;
-    D_FlipFlop u0(D,clock,t1);
-    D_FlipFlop u1(t1,clock,Z);
+    always @(posedge clock) begin
+        Z <= P;
+    end
 endmodule
